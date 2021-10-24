@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controlador;
 
 import java.io.IOException;
@@ -14,7 +19,7 @@ import modelo.Producto;
  *
  * @author Luis Fernando Paxel
  */
-public class prueba extends HttpServlet {
+public class Eliminar extends HttpServlet {
 
     Producto producto;
 
@@ -26,34 +31,36 @@ public class prueba extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet prueba</title>");
+            out.println("<title>Servlet Eliminar</title>");
             out.println("</head>");
             out.println("<body>");
 
-            producto = new Producto(Integer.parseInt(request.getParameter("txt_id_producto")), request.getParameter("txt_producto"), Integer.parseInt(request.getParameter("drop_marcas")), request.getParameter("txt_descripcion"), "", Double.parseDouble(request.getParameter("txt_costo")), Double.parseDouble(request.getParameter("txt_venta")), Integer.valueOf(request.getParameter("txt_existencia")), "");
-        
-              if ("modificar".equals(request.getParameter("btn_modificar"))) {
+            producto = new Producto(Integer.parseInt(request.getParameter("txt_id_producto")), request.getParameter("txt_producto"), Integer.valueOf(request.getParameter("drop_marcas")), request.getParameter("txt_descripcion"), "", Double.valueOf(request.getParameter("txt_costo")), Double.valueOf(request.getParameter("txt_venta")), Integer.valueOf(request.getParameter("txt_existencia")), "");
 
-                if (producto.modificar()> 0) {
-                    Thread.sleep(2000);
-                    response.sendRedirect("index.jsp");
-                } else {
-                    Thread.sleep(2000);
-                    response.sendRedirect("index.jsp");
-                }
-            }
-             if ("eliminar".equals(request.getParameter("btn_eliminar"))) {
+            if ("eliminar".equals(request.getParameter("btn_eliminar"))) {
 
                 if (producto.eliminar() > 0) {
-               Thread.sleep(2000);
+                    Thread.sleep(2000);
                     response.sendRedirect("index.jsp");
                 } else {
-                 Thread.sleep(2000);
+                    Thread.sleep(2000);
                     response.sendRedirect("index.jsp");
-        
+
                 }
             }
             
+            if ("modificar".equals(request.getParameter("btn_modificar"))) {
+
+                if (producto.modificar() > 0) {
+                    Thread.sleep(2000);
+                    response.sendRedirect("index.jsp");
+                } else {
+                    Thread.sleep(2000);
+                    response.sendRedirect("index.jsp");
+
+                }
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,7 +81,7 @@ public class prueba extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (InterruptedException ex) {
-            Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Eliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,7 +99,7 @@ public class prueba extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (InterruptedException ex) {
-            Logger.getLogger(prueba.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Eliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

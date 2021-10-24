@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controlador;
 
 import java.io.File;
@@ -10,16 +15,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Producto;
-import modelo.insertar;
+import modelo.modificar;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
+ *
  * @author Luis Fernando Paxel
  */
-public class prod44 extends HttpServlet {
+public class mod1 extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,37 +35,35 @@ public class prod44 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet prod44</title>");
+            out.println("<title>Servlet mod1</title>");
             out.println("</head>");
             out.println("<body>");
-            Producto p = new Producto();
-            insertar agregar = new insertar();
+            Producto pr = new Producto();
+            modificar mod = new modificar();
 
-            ArrayList<String> lista = new ArrayList<>();
+            ArrayList<String> lista2 = new ArrayList<>();
             try {
-                FileItemFactory file = new DiskFileItemFactory();
-                ServletFileUpload fileUpload = new ServletFileUpload(file);
-                List items = fileUpload.parseRequest(request);
-                for (int i = 0; i < items.size(); i++) {
-                    FileItem fileItem = (FileItem) items.get(i);
+                FileItemFactory file2 = new DiskFileItemFactory();
+                ServletFileUpload fileUpload2 = new ServletFileUpload(file2);
+                List items2 = fileUpload2.parseRequest(request);
+                for (int i = 0; i < items2.size(); i++) {
+                    FileItem fileItem = (FileItem) items2.get(i);
                     if (!fileItem.isFormField()) {
                         File f = new File("C:\\Users\\Luis Fernando Paxel\\Documents\\NetBeansProjects\\Formulario_prueba\\web\\img\\" + fileItem.getName());
                         fileItem.write(f);
-                        p.setImagen("/Formulario_prueba/img/" + fileItem.getName());
+                        pr.setImagen("/Formulario_prueba/img/" + fileItem.getName());
                     } else {
-                        lista.add(fileItem.getString());
+                        lista2.add(fileItem.getString());
                     }
                 }
-                p.setProducto(lista.get(1));
-                p.setExistencia(Integer.parseInt(lista.get(2)));
-                p.setDescripcion(lista.get(3));
-                p.setPrecio_costo(Double.parseDouble(lista.get(4)));
-                p.setPrecio_venta(Double.parseDouble(lista.get(5)));
-                p.setIdmarca(Integer.parseInt(lista.get(6)));
-                agregar.agregar(p);
+                pr.setId(Integer.valueOf(lista2.get(0)));
+
+                mod.modificar22(pr);
+
                 response.sendRedirect("index.jsp");
             } catch (Exception e) {
             }
+
             out.println("</body>");
             out.println("</html>");
         }

@@ -10,6 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,6 +32,8 @@
         </button>
 
 
+
+
         <div class="container-fluid p-3 my-3   text-black">
             <div class="formulario_titulo">
                 <h5>Formulario Productos</h5>
@@ -40,13 +43,12 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content formula_modal">
                         <div class="modal-body  ">
-                            <form  action="index_marcas.jsp">
-                                <input class="enlaze_marcas" type="submit" value="Marcas" />
-                            </form>
+
+                            <button type="button" class="enlaze_modal" onclick="window.location = 'index.jsp'">Marcas</button> 
 
                             <form action="prod44" method="post" class="formulario" name="formulario"  class="form-group" id="formulario" enctype="multipart/form-data" >
                                 <!-- ID -->
-                                <div class="formulario__grupo" id="grupo_txt_id">
+                                <div class="formulario__grupo" id="grupo_txt_id_producto1">
                                     <label for="lbl_id" class="formulario__label">ID:</label>
                                     <div class="formulario__grupo-input">
                                         <input type="text" class="formulario__input" name="txt_id_producto1" id="txt_id_producto1" value="0" readonly>
@@ -54,10 +56,10 @@
                                 </div>
 
                                 <!-- Producto -->
-                                <div class="formulario__grupo" id="grupo__txt_producto">
+                                <div class="formulario__grupo" id="grupo__txt_producto1">
                                     <label for="lbl_producto" class="formulario__label">Producto </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_producto1" id="txt_producto1" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Producto" required >
+                                        <input type="text" class="formulario__input" name="txt_producto1" id="txt_producto1" pattern="^[a-zA-Z0-9,.!? ]*$" placeholder="Producto" required >
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
                                     <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
@@ -74,10 +76,10 @@
 
                                 <!--Descripción -->
 
-                                <div class="formulario__grupo" id="grupo__txt_descripcion">
+                                <div class="formulario__grupo" id="grupo__txt_descripcion1">
                                     <label for="lbl_descripcion" class="formulario__label">Descripcion </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_descripcion1" id="txt_descripcion1" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Descripcion del producto" required>
+                                        <input type="text" class="formulario__input" name="txt_descripcion1" id="txt_descripcion1" pattern="^[a-zA-Z0-9,.!? ]*$" placeholder="Descripcion del producto" required>
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
                                     <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
@@ -105,7 +107,7 @@
                                     <label for="lbl_imagen" class="formulario__label">Imagen </label>
                                     <div class="formulario__grupo-input">
 
-                                        <input  type="file"   name="txt_imagen1" id="txt_imagen1"   placeholder="Link de la imagen del producto" >
+                                        <input  type="file" required  name="txt_imagen1" id="txt_imagen1"   placeholder="Link de la imagen del producto" >
 
                                     </div>
                                 </div>
@@ -134,7 +136,7 @@
                                 </div>     
                                 <br> 
                                 <div class=" formulario__grupo-btn-enviar">
-                                    <button  name="btn_agregar_productos" id="btn_agregar_productos" value="agregar_producto" class="formulario__btn " >Agregar</button>
+                                    <button  name="btn_agregar_productos" id="btn_agregar_productos" value="agregar_producto" class="formulario__btn" >Agregar</button>
                                 </div>
 
 
@@ -149,15 +151,19 @@
             </div>       
             <!-- ---------------------------- Segundo Formulario MODIFICAR ELIMINAR ------------------------------------------------------- -->                                    
 
-            <div class="modal fade"  data-backdrop="static" data-keyboard="false" tabindex="-1" id="modal_producto44" role="dialog">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content formula_modal">
+            <div class="modal fade"  id="modal_producto44" role="dialog"  data-backdrop="static" data-keyboard="false" tabindex="-1" >
+                <div class=" modal-xl modal-dialog  modal-dialog-scrollable ">
+                    <div class="modal-content modal_ventana">
                         <div class="modal-body  ">
-                            <form  action="index_marcas.jsp">
-                                <input class="enlaze_marcas" type="submit" value="Marcas" />
-                            </form>
 
-                            <form action="prueba" method="post" class="formulario" name="formulario2"  class="form-group" id="formulario2" >
+
+                            <button type="button" class="enlaze_modal" onclick="window.location = 'index.jsp'">Marcas</button> 
+                            <button type="button" class="enlaze_modal" data-toggle="modal" data-target="#modal_producto99" onclick="Limpiar()">
+                                Modificar Imagen 
+                            </button>
+
+
+                            <form action="Eliminar" method="post" class="formulario " name="formulario2"  class="form-group" id="formulario2" >
                                 <!-- ID -->
                                 <div class="formulario__grupo" id="grupo_txt_id">
                                     <label for="lbl_id" class="formulario__label">ID:</label>
@@ -213,15 +219,6 @@
                                         <input type="number" style="padding-left: 40px;"  class="formulario__input" step="0.01" name="txt_venta" id="txt_venta" required placeholder="Q##. ##">
                                     </div>
                                 </div>
-                                <!-- Imagen -->
-                                <div class="formulario__grupo" id="grupo__txt_imagen">
-                                    <label for="lbl_imagen" class="formulario__label">Imagen </label>
-                                    <div class="formulario__grupo-input">
-
-                                        <input  type="file"   name="txt_imagen" id="txt_imagen"   placeholder="Link de la imagen del producto" >
-
-                                    </div>
-                                </div>
 
                                 <!-- Marcas -->
 
@@ -263,6 +260,68 @@
                 </div>
             </div>    
 
+            <!-- ------------------------------------------------------------------------- Nueva Ventana Modal ---------------------------------------------------------------------------------- -->
+            <div class="modal fade"   id="modal_producto99" role="dialog">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content modal_ventana">
+                        <div class="modal-body">
+                            <button type="button" class="enlaze_modal" onclick="window.location = 'index.jsp'">Marcas</button> 
+                            <form action="mod1" method="post" class="formulario" name="formulario22"  class="form-group" id="formulario22" enctype="multipart/form-data" >
+                                <!-- ID -->
+                                <div class="formulario__grupo" id="grupo_txt_id">
+                                    <label for="lbl_id" class="formulario__label">ID:</label>
+                                    <div class="formulario__grupo-input">
+                                        <input type="text" class="formulario__input" name="txt_id_producto22" id="txt_id_producto22" value="0" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Producto -->
+                                <div class="formulario__grupo" id="grupo__txt_producto">
+                                    <label for="lbl_producto" class="formulario__label">Producto </label>
+                                    <div class="formulario__grupo-input">
+                                        <input type="text" class="formulario__input" name="txt_producto22" id="txt_producto22" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Producto" readonly >
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                    </div>
+                                    <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
+                                </div>
+
+                                <!--Descripción -->
+                                <div class="formulario__grupo" id="grupo__txt_descripcion">
+                                    <label for="lbl_descripcion" class="formulario__label">Descripcion </label>
+                                    <div class="formulario__grupo-input">
+                                        <input type="text" class="formulario__input" name="txt_descripcion22" id="txt_descripcion22" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Descripcion del producto" readonly>
+                                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                    </div>
+                                    <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
+                                </div>
+
+                                <!-- Imagen -->
+                                <div class="formulario__grupo" id="grupo__txt_imagen">
+                                    <label for="lbl_imagen" class="formulario__label">Imagen </label>
+                                    <div class="formulario__grupo-input">
+
+                                        <input  type="file"   name="txt_imagen22" id="txt_imagen22"   placeholder="Link de la imagen del producto" >
+                                    </div>
+                                </div>
+
+                                <div class="formulario__grupo-btn-enviar  ">
+                                    <img class=" estilo_imagen" id="obtener_img" src="" >
+                                </div>
+
+                                <div class=" formulario__grupo-btn-enviar">
+                                    <button  name="btn_agregar_productos" id="btn_agregar_productos" value="agregar_producto" class="formulario__btn " >Modificar</button>
+                                </div>
+                            </form>  
+                            <div class="modal-footer">
+                                <button  type="button" class="btn btn-warning mod_salir"   onclick="unselect()" data-dismiss="modal">Salir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+
+
+
             <br> <br>
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark   titulos">
@@ -277,7 +336,7 @@
                         <th>Marca </th>
                     </tr>
                 </thead>
-                <tbody class="formula_tabla" id="tbl_productos">
+                <tbody class="formula_tabla " id="tbl_productos">
                     <%
                         Producto producto = new Producto();
                         DefaultTableModel tabla = new DefaultTableModel();
@@ -285,10 +344,10 @@
                         int cero = 0;
                         for (int t = 0; t < tabla.getRowCount(); t++) {
                             cero++;
-                            out.println("<tr data-id=" + tabla.getValueAt(t, 0) + " data-id_pues=" + tabla.getValueAt(t, 9) + " >");
+                            out.println("<tr data-id=" + tabla.getValueAt(t, 0) + " data-id_pues=" + tabla.getValueAt(t, 9) + " data-id_img2=" + tabla.getValueAt(t, 10) + " >");
                             out.println("<td>" + tabla.getValueAt(t, 1) + "</td>");
                             out.println("<td>" + tabla.getValueAt(t, 2) + "</td>");
-                            out.println("<td> <img src=" + tabla.getValueAt(t, 3) + " alt='imagen' width='133' height='115'></td>");
+                            out.println("<td> <img src=" + tabla.getValueAt(t, 3) + " alt='imagen' class='estilo_imagen2'></td>");
                             out.println("<td>" + tabla.getValueAt(t, 4) + "</td>");
                             out.println("<td>" + tabla.getValueAt(t, 5) + "</td>");
                             out.println("<td>" + tabla.getValueAt(t, 6) + "</td>");
